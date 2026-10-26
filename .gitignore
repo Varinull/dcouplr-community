@@ -1,0 +1,13 @@
+# General
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*~
+
+# Staging & temp
+tmp/
+temp/
+*.tar.gz
+*.zip
+*.exe
