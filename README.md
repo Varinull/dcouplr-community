@@ -116,6 +116,7 @@ All official guides published on [https://dcouplr.com/docs](https://dcouplr.com/
 | 🔌 [**API Reference & 3-Tier Security Model**](docs/API_REFERENCE_AND_TIERS.md) | API Reference | Architecture specs for Tier 1 (Public Free), Tier 2 (Customer Authenticated), and Tier 3 (Admin Internal). |
 | 🛡️ [**Zero-Egress Security Architecture**](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md) | Security | Mathematical proof of zero data exfiltration ($Egress_{WAN} \equiv 0.00\text{ KB}$) and HMAC-SHA256 anonymization. |
 | 📋 [**Technical Readiness & Quality Gates**](docs/TECHNICAL_READINESS_AND_QUALITY_GATES.md) | Quality Assurance | The 9 Enterprise Quality Gates, readiness scorecard (9.5/10), and automated test suites. |
+| 🤝 [**Support Tiers, SLAs & Operational KPIs**](docs/SUPPORT_TIERS_SLAS_AND_KPIS.md) | Support & SLAs | Detailed support levels by tier, guaranteed P0–P4 response windows, MTTA/MTTI/MTTM metrics, and Jitsi video war-room bridge protocols. |
 
 ---
 
