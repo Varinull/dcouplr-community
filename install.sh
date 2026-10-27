@@ -76,11 +76,11 @@ if [ "$DOWNLOAD_SUCCESS" = true ]; then
     tar -xzf "${TMP_DIR}/${TARBALL_NAME}" -C "${TMP_DIR}"
     install -m 755 "${TMP_DIR}/${BINARY_NAME}" "${INSTALL_DIR}/${BINARY_NAME}"
 else
-    echo -e "${YELLOW}==> Binary release not yet on GitHub Releases. Falling back to local/pip environment install...${NC}"
+    echo -e "${YELLOW}==> Binary release not yet on GitHub Releases. Installing Community Core via git package...${NC}"
     if command -v pip3 &>/dev/null; then
-        pip3 install --upgrade dcouplr --quiet || true
+        pip3 install --upgrade git+https://github.com/Varinull/dcouplr.git --quiet || true
     elif command -v pip &>/dev/null; then
-        pip install --upgrade dcouplr --quiet || true
+        pip install --upgrade git+https://github.com/Varinull/dcouplr.git --quiet || true
     fi
 fi
 
@@ -91,12 +91,19 @@ if [[ ":$PATH:" != *":${INSTALL_DIR}:"* ]]; then
     echo -e "    export PATH=\"${INSTALL_DIR}:\$PATH\""
 fi
 
-echo -e "\n${GREEN}[SUCCESS] <dcouplr/> Community CLI v${VERSION} installed successfully!${NC}"
+echo -e "\n${GREEN}[SUCCESS] <dcouplr/> Community Core v${VERSION} installed successfully!${NC}"
+echo -e "${CYAN}----------------------------------------------------------------------${NC}"
+echo -e "${GREEN}==> Community Core Entitlement Profile Active:${NC}"
+echo -e "  • Monitored Capacity:     1 Local Agent / CLI (\`dcouplr\`)"
+echo -e "  • Privacy Guarantee:      In-Memory Zero-Egress Sanitizer"
+echo -e "  • AST Transpiler Engine:  Unlimited Local AST Transpilations"
+echo -e "  • Autonomous Diagnostics: Automated \`dcouplr doctor\` & \`lint\`"
+echo -e "  • Migration Operations:   Zero-Downtime State Relocation Planner"
 echo -e "${CYAN}----------------------------------------------------------------------${NC}"
 echo -e "Quick Start Commands:"
 echo -e "  1. Run System Preflight:          dcouplr doctor"
-echo -e "  2. Check Version & Environment:   dcouplr version"
+echo -e "  2. Check Version & Entitlement:   dcouplr version"
 echo -e "  3. Translate Monitor/IaC Config:  dcouplr translate -i monitor.json -t grafana"
-echo -e "  4. Documentation & Guides:        https://github.com/${GITHUB_REPO}"
+echo -e "  4. Documentation & Community:     https://github.com/${GITHUB_REPO}"
 echo -e "  5. Documentation & Portal:        https://dcouplr.com/docs"
 echo -e "${CYAN}----------------------------------------------------------------------\n${NC}"

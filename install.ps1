@@ -40,10 +40,10 @@ try {
     Remove-Item $TempZip -Force -ErrorAction SilentlyContinue
     $DownloadSuccess = $true
 } catch {
-    Write-Host "==> Binary archive not yet published on GitHub Releases. Using Python/pip fallback..." -ForegroundColor Yellow
+    Write-Host "==> Binary archive not yet published on GitHub Releases. Installing Community Core via git package..." -ForegroundColor Yellow
     if (Get-Command pip -ErrorAction SilentlyContinue) {
-        pip install --upgrade dcouplr --quiet
-        Write-Host "[OK] Installed via Python pip package." -ForegroundColor Green
+        pip install --upgrade git+https://github.com/Varinull/dcouplr.git --quiet
+        Write-Host "[OK] Installed Community Core via git package." -ForegroundColor Green
     }
 }
 
@@ -55,12 +55,19 @@ if ($UserPath -notlike "*$InstallDir*") {
     $env:Path += ";$InstallDir"
 }
 
-Write-Host "`n[SUCCESS] <dcouplr/> Community CLI v$Version installed successfully!" -ForegroundColor Green
+Write-Host "`n[SUCCESS] <dcouplr/> Community Core v$Version installed successfully!" -ForegroundColor Green
+Write-Host "----------------------------------------------------------------------" -ForegroundColor DarkCyan
+Write-Host "==> Community Core Entitlement Profile Active:" -ForegroundColor Green
+Write-Host "  * Monitored Capacity:     1 Local Agent / CLI (`dcouplr`)" -ForegroundColor White
+Write-Host "  * Privacy Guarantee:      In-Memory Zero-Egress Sanitizer" -ForegroundColor White
+Write-Host "  * AST Transpiler Engine:  Unlimited Local AST Transpilations" -ForegroundColor White
+Write-Host "  * Autonomous Diagnostics: Automated `dcouplr doctor` & `lint`" -ForegroundColor White
+Write-Host "  * Migration Operations:   Zero-Downtime State Relocation Planner" -ForegroundColor White
 Write-Host "----------------------------------------------------------------------" -ForegroundColor DarkCyan
 Write-Host "Quick Start Commands:" -ForegroundColor White
 Write-Host "  1. Run System Preflight:          dcouplr doctor" -ForegroundColor Green
 Write-Host "  2. Check Version & Entitlement:   dcouplr version" -ForegroundColor Green
 Write-Host "  3. Translate Monitor/IaC Config:  dcouplr translate -i monitor.json -t grafana" -ForegroundColor Green
-Write-Host "  4. Documentation & Guides:        https://github.com/$Repo" -ForegroundColor Green
+Write-Host "  4. Documentation & Community:     https://github.com/$Repo" -ForegroundColor Green
 Write-Host "  5. Documentation & Portal:        https://dcouplr.com/docs" -ForegroundColor Green
 Write-Host "----------------------------------------------------------------------`n" -ForegroundColor DarkCyan

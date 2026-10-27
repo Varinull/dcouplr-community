@@ -110,21 +110,20 @@ dcouplr parse -q "avg(last_5m):avg:system.cpu.user{region:us-east-1} > 80"
 
 ## 🏢 Feature Matrix: Community Core vs. Enterprise Edition
 
-| Feature | Community Core (Free / Open) | Enterprise Edition |
+| Feature / Capability | Community Core (Free Tier) | Enterprise Edition |
 | :--- | :---: | :---: |
-| **License** | **Apache 2.0** | Commercial In-VPC |
-| **Local CLI (`doctor`, `version`, `parse`)** | ✅ Included | ✅ Included |
-| **AST Alert Rule Transpilation** | ✅ Included | ✅ Included |
-| **In-Memory Token Redaction** | ✅ Included | ✅ Included |
-| **Zero-Egress Execution Guarantee** | ✅ Included | ✅ Included |
+| **License Model** | **Apache 2.0 (Perpetual $0)** | Commercial In-VPC |
+| **Monitored Agent Capacity** | **1 Local Agent / CLI (`dcouplr`)** | 25 – 1,000+ Distributed Nodes |
+| **In-Memory Zero-Egress Sanitizer** | ✅ **Included (100% In-VPC)** | ✅ Included (Enterprise Policy Mesh) |
+| **Unlimited Local AST Transpilations** | ✅ **Included (Full Engine)** | ✅ Included (High-Throughput Daemon) |
+| **Automated `dcouplr doctor` & `lint`** | ✅ **Included** | ✅ Included (CI/CD Enforcement Gates) |
+| **Zero-Downtime State Relocation Planner** | ✅ **Included (Local State)** | ✅ Included (Cluster Replay & Mesh) |
+| **Multi-VPC Topology & Anycast Routing** | — | ✅ Included |
+| **Distributed HashiCorp Raft Consensus** | — | ✅ Included |
 | **Interactive In-App Web Studio & Swagger** | — | ✅ Included |
-| **Distributed Multi-Node HashiCorp Raft Consensus** | — | ✅ Included |
-| **Non-Blocking gRPC Telemetry Interceptors** | — | ✅ Included |
-| **Bi-Directional Telemetry Replay & Lift-and-Shift** | — | ✅ Included |
-| **Automated IaC State Migration (TF ➔ OpenTofu)** | — | ✅ Included |
-| **Enterprise SLA & 24/7 SRE Support Bridges** | — | ✅ Included |
+| **24/7 Dedicated SRE Bridge SLA** | — | ✅ Included |
 
-For enterprise pilots, custom integrations, or VPC cluster deployments, visit [https://dcouplr.com](https://dcouplr.com) or email `enterprise@varinull.com`.
+For enterprise cluster deployments, custom vendor grammars, or multi-VPC mesh licenses, visit [https://dcouplr.com](https://dcouplr.com) or review [Enterprise Documentation](https://dcouplr.com/docs).
 
 ---
 
