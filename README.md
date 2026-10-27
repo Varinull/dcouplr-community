@@ -27,11 +27,11 @@
 
 ### Linux & macOS One-Line Installer
 ```bash
-curl -fsSL https://dcouplr.com/install.sh | sh
+curl -fsSL https://dcouplr.com/install.sh | sh && dcouplr doctor
 ```
 *Or directly via GitHub:*
 ```bash
-curl -fsSL https://raw.githubusercontent.com/varinull/dcouplr-community/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/varinull/dcouplr-community/main/install.sh | sh && dcouplr doctor
 ```
 
 ### Windows PowerShell Installer
