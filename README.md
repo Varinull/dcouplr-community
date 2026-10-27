@@ -100,11 +100,22 @@ dcouplr parse -q "avg(last_5m):avg:system.cpu.user{region:us-east-1} > 80"
 
 ---
 
-## 📚 Community Documentation
+## 📚 Community Documentation & Field Guides
 
-- 🚀 [Getting Started & Installation Guide](docs/GETTING_STARTED.md)
-- 🧭 [CLI User Guide & Options Reference](docs/CLI_USER_GUIDE.md)
-- 🛡️ [Zero-Egress Security & Mathematical Boundary Architecture](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md)
+All official guides published on [https://dcouplr.com/docs](https://dcouplr.com/docs) are accessible directly in this repository:
+
+| Guide / Specification | Category | Focus & Content |
+| :--- | :--- | :--- |
+| 🚀 [**Getting Started & Installation Guide**](docs/GETTING_STARTED.md) | Quickstart | 60-second quickstarts, environment prerequisites, and `dcouplr doctor` verification. |
+| 🧭 [**CLI User Guide & Options Reference**](docs/CLI_USER_GUIDE.md) | CLI Reference | Complete flag reference for `translate`, `parse`, `doctor`, and `version`. |
+| 📖 [**Engineer & Operator User Manual**](docs/ENGINEER_USER_MANUAL.md) | Hands-on Manual | 3-minute quickstarts, Datadog-to-Prometheus cookbook, Terraform-to-OpenTofu, FAQ & everyday cheat sheet. |
+| 🛠️ [**Turnkey Migration Recipes (1–8)**](docs/TURNKEY_MIGRATION_RECIPES.md) | Recipes | Production recipes for Datadog, New Relic, AWS CloudWatch, Azure Monitor, OpenTofu, Replication, and Raft. |
+| ⚡ [**SRE Lift & Shift & Hyperscaler Handover**](docs/RUNBOOK_LIFT_AND_SHIFT_HYPERSCALER_HANDOVER.md) | Operations Runbook | End-to-end VPC migration runbook: AWS MGN, GCP M4CE, Azure Migrate, and `cloaudit` FinOps handover. |
+| 📺 [**24x7 NOC Wallboard Deployment Runbook**](docs/WALLBOARD_OPTIONS_BUILD_AND_DEPLOYMENT_RUNBOOK.md) | Wallboard & Ops | Setup guide for `AirLock™` (Zero-Trust Tunnel) and `PulseCast™` (Edge CDN Mirror) with Raspberry Pi / Intel N100 Kiosk scripts. |
+| 📊 [**Resource Utilization & Performance Proof**](docs/RESOURCE_UTILIZATION_AND_PERFORMANCE_PROOF.md) | Performance Proof | Empirical benchmark audit: Sub-100MB RAM, < 0.1% CPU, 63.2 rules/sec, zero memory leaks, and 0 WAN egress. |
+| 🔌 [**API Reference & 3-Tier Security Model**](docs/API_REFERENCE_AND_TIERS.md) | API Reference | Architecture specs for Tier 1 (Public Free), Tier 2 (Customer Authenticated), and Tier 3 (Admin Internal). |
+| 🛡️ [**Zero-Egress Security Architecture**](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md) | Security | Mathematical proof of zero data exfiltration ($Egress_{WAN} \equiv 0.00\text{ KB}$) and HMAC-SHA256 anonymization. |
+| 📋 [**Technical Readiness & Quality Gates**](docs/TECHNICAL_READINESS_AND_QUALITY_GATES.md) | Quality Assurance | The 9 Enterprise Quality Gates, readiness scorecard (9.5/10), and automated test suites. |
 
 ---
 
@@ -132,7 +143,7 @@ For enterprise cluster deployments, custom vendor grammars, or multi-VPC mesh li
 - **Bug Reports & Issues:** Please submit bug reports or feature suggestions via [GitHub Issues](https://github.com/varinull/dcouplr-community/issues).
 - **Official Website:** [https://dcouplr.com](https://dcouplr.com)
 - **Documentation:** [https://dcouplr.com/docs](https://dcouplr.com/docs)
-
+- **Primary Source Code:** [https://github.com/Varinull/dcouplr](https://github.com/Varinull/dcouplr)
 
 ---
 
