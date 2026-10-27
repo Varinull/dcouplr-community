@@ -132,7 +132,7 @@ For enterprise cluster deployments, custom vendor grammars, or multi-VPC mesh li
 - **Bug Reports & Issues:** Please submit bug reports or feature suggestions via [GitHub Issues](https://github.com/varinull/dcouplr-community/issues).
 - **Official Website:** [https://dcouplr.com](https://dcouplr.com)
 - **Documentation:** [https://dcouplr.com/docs](https://dcouplr.com/docs)
-- **Primary Source Code:** [https://github.com/Varinull/dcouplr](https://github.com/Varinull/dcouplr)
+
 
 ---
 
