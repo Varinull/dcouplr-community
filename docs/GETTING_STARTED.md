@@ -18,7 +18,7 @@
 
 ### Option 1: Linux & macOS One-Line Installer
 ```bash
-curl -fsSL https://get.dcouplr.io | sh
+curl -fsSL https://dcouplr.com/install.sh | sh
 ```
 *Or using the direct community repository script:*
 ```bash
@@ -28,16 +28,11 @@ curl -fsSL https://raw.githubusercontent.com/varinull/dcouplr-community/main/ins
 ### Option 2: Windows PowerShell Installer
 Run in PowerShell:
 ```powershell
-irm https://get.dcouplr.io/install.ps1 | iex
+irm https://dcouplr.com/install.ps1 | iex
 ```
 *Or using the direct community repository script:*
 ```powershell
 irm https://raw.githubusercontent.com/varinull/dcouplr-community/main/install.ps1 | iex
-```
-
-### Option 3: Homebrew (macOS / Linux)
-```bash
-brew install varinull/tap/dcouplr
 ```
 
 ---
@@ -101,5 +96,5 @@ groups:
 ## 4. 📚 Helpful Links & Resources
 - 📖 [CLI User Guide](CLI_USER_GUIDE.md)
 - 🛡️ [Zero-Egress Security Model](ZERO_EGRESS_SECURITY_ARCHITECTURE.md)
-- 🌐 [Official Website & Enterprise Portal](https://dcouplr.io)
+- 🌐 [Official Website & Enterprise Portal](https://dcouplr.com)
 - 💬 [Community Issue Tracker](https://github.com/varinull/dcouplr-community/issues)

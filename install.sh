@@ -3,7 +3,7 @@
 # <dcouplr/> Universal Community CLI Installer for Linux & macOS
 # Zero-Egress Observability & In-VPC Infrastructure Transpiler
 # Repository: https://github.com/varinull/dcouplr-community
-# Usage: curl -fsSL https://get.dcouplr.io | sh
+# Usage: curl -fsSL https://dcouplr.com/install.sh | sh
 # ==============================================================================
 set -euo pipefail
 
@@ -98,5 +98,5 @@ echo -e "  1. Run System Preflight:          dcouplr doctor"
 echo -e "  2. Check Version & Environment:   dcouplr version"
 echo -e "  3. Translate Monitor/IaC Config:  dcouplr translate -i monitor.json -t grafana"
 echo -e "  4. Documentation & Guides:        https://github.com/${GITHUB_REPO}"
-echo -e "  5. Customer Support & Portal:     https://dcouplr.io/support"
+echo -e "  5. Documentation & Portal:        https://dcouplr.com/docs"
 echo -e "${CYAN}----------------------------------------------------------------------\n${NC}"

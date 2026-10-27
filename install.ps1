@@ -2,7 +2,7 @@
 # <dcouplr/> Windows PowerShell Installer
 # Zero-Egress Observability & In-VPC Infrastructure Transpiler
 # Repository: https://github.com/varinull/dcouplr-community
-# Usage: irm https://get.dcouplr.io/install.ps1 | iex
+# Usage: irm https://dcouplr.com/install.ps1 | iex
 # ==============================================================================
 [CmdletBinding()]
 param(
@@ -62,5 +62,5 @@ Write-Host "  1. Run System Preflight:          dcouplr doctor" -ForegroundColor
 Write-Host "  2. Check Version & Entitlement:   dcouplr version" -ForegroundColor Green
 Write-Host "  3. Translate Monitor/IaC Config:  dcouplr translate -i monitor.json -t grafana" -ForegroundColor Green
 Write-Host "  4. Documentation & Guides:        https://github.com/$Repo" -ForegroundColor Green
-Write-Host "  5. Customer Support Desk:         https://dcouplr.io/support" -ForegroundColor Green
+Write-Host "  5. Documentation & Portal:        https://dcouplr.com/docs" -ForegroundColor Green
 Write-Host "----------------------------------------------------------------------`n" -ForegroundColor DarkCyan

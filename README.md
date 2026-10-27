@@ -27,7 +27,7 @@
 
 ### Linux & macOS One-Line Installer
 ```bash
-curl -fsSL https://get.dcouplr.io | sh
+curl -fsSL https://dcouplr.com/install.sh | sh
 ```
 *Or directly via GitHub:*
 ```bash
@@ -37,20 +37,17 @@ curl -fsSL https://raw.githubusercontent.com/varinull/dcouplr-community/main/ins
 ### Windows PowerShell Installer
 Run in PowerShell:
 ```powershell
-irm https://get.dcouplr.io/install.ps1 | iex
+irm https://dcouplr.com/install.ps1 | iex
 ```
 *Or directly via GitHub:*
 ```powershell
 irm https://raw.githubusercontent.com/varinull/dcouplr-community/main/install.ps1 | iex
 ```
 
-### Direct Release Downloads
-Download pre-built standalone binaries from [GitHub Releases](https://github.com/varinull/dcouplr-community/releases):
-- 🐧 **Linux (x86_64):** `dcouplr-1.0.0-linux-amd64.tar.gz`
-- 🐧 **Linux (ARM64 / Graviton):** `dcouplr-1.0.0-linux-arm64.tar.gz`
-- 🍏 **macOS (Apple Silicon M1-M4):** `dcouplr-1.0.0-darwin-arm64.tar.gz`
-- 🍏 **macOS (Intel x86_64):** `dcouplr-1.0.0-darwin-amd64.tar.gz`
-- 🪟 **Windows (x64):** `dcouplr-1.0.0-windows-amd64.zip`
+### Direct Installer Script Downloads
+Download standalone installer scripts:
+- 🐧 🍏 **Linux & macOS:** [install.sh](install.sh) (`https://dcouplr.com/install.sh`)
+- 🪟 **Windows PowerShell:** [install.ps1](install.ps1) (`https://dcouplr.com/install.ps1`)
 
 ---
 
@@ -127,16 +124,16 @@ dcouplr parse -q "avg(last_5m):avg:system.cpu.user{region:us-east-1} > 80"
 | **Automated IaC State Migration (TF ➔ OpenTofu)** | — | ✅ Included |
 | **Enterprise SLA & 24/7 SRE Support Bridges** | — | ✅ Included |
 
-For enterprise pilots, custom integrations, or VPC cluster deployments, visit [https://dcouplr.io](https://dcouplr.io) or email `enterprise@varinull.com`.
+For enterprise pilots, custom integrations, or VPC cluster deployments, visit [https://dcouplr.com](https://dcouplr.com) or email `enterprise@varinull.com`.
 
 ---
 
 ## 🤝 Community & Support
 
 - **Bug Reports & Issues:** Please submit bug reports or feature suggestions via [GitHub Issues](https://github.com/varinull/dcouplr-community/issues).
-- **Official Website:** [https://dcouplr.io](https://dcouplr.io)
-- **Documentation:** [https://dcouplr.io/docs](https://dcouplr.io/docs)
-- **Support Desk:** [https://dcouplr.io/support](https://dcouplr.io/support)
+- **Official Website:** [https://dcouplr.com](https://dcouplr.com)
+- **Documentation:** [https://dcouplr.com/docs](https://dcouplr.com/docs)
+- **Primary Source Code:** [https://github.com/Varinull/dcouplr](https://github.com/Varinull/dcouplr)
 
 ---
 
