@@ -31,7 +31,7 @@ The table below outlines the service boundaries, coverage windows, support chann
 | **License Type** | Apache 2.0 Open-Core | Commercial In-VPC | Commercial In-VPC | Commercial Multi-VPC | Commercial Fleet Mesh | Air-Gapped Perpetual |
 | **Coverage Hours** | Asynchronous (Volunteer) | 9×5 Local Business | 12×5 Extended (UTC) | 24×7×365 for P1 / 12×5 for P2–P4 | 24×7×365 Continuous Priority | 24×7×365 Follow-the-Sun |
 | **P1 First Response SLA** | **Best Effort** | **24 Hours** (Bus. Days) | **4 Hours** | **2 Hours** (24/7 Guaranteed) | **1 Hour** (24/7 Guaranteed) | **15 Minutes** (Ultra-Priority) |
-| **Support Intake Channels** | GitHub Discussions & Issues | Priority Email Desk (`support@dcouplr.com`) | In-VPC Support Desk (`/support`) | Shared Slack / Teams Channel + Web Desk | Direct PagerDuty / Opsgenie + Slack Connect | 24/7 Emergency Hotline + Private Slack Grid |
+| **Support Intake Channels** | GitHub Discussions & Issues | Priority Email Desk (`support@dcouplr.com`) | CLI Ticket Dispatch & Priority Desk | Shared Slack / Teams Channel + Priority Email | Direct PagerDuty / Opsgenie + Slack Connect | 24/7 Emergency Hotline + Private Slack Grid |
 | **Incident War-Room Bridge** | — | — | Ad-hoc Screen-Share (1/qtr) | Dedicated On-Demand Bridge (< 30m) | Live Video War-Room (< 15m) + PagerDuty | Instant War-Room Cell (< 5m) + Dedicated On-Call |
 | **Account Management** | Community Forums | Shared Support Queue | Pooled Technical Support | Designated Associate TAM | Dedicated Named Senior TAM | Dedicated Principal TAM & Solutions Architect |
 | **Custom Parser SLAs** | Community PRs | Roadmap Requests | Roadmap Priority | 30-Day Parser Commit | 14-Day Bespoke Grammar Delivery | 5-Day Bespoke Parser Sprint |
@@ -116,7 +116,7 @@ Incoming incident tickets are categorized by operational severity. Response time
 For critical incidents (P0/P1), `<dcouplr/>` activates live emergency incident war-rooms powered by an embedded, zero-egress WebRTC bridge (`JitsiMeetExternalAPI` / secure Google Meet bridge):
 
 ### 5.1 Architecture & Privacy Isolation
-- **Zero Third-Party Accounts:** Customer engineers join via a time-scoped single-click URL generated directly by their local cluster (`http://127.0.0.1:8000/support#bridges`).
+- **Zero Third-Party Accounts:** Customer engineers join via a time-scoped single-click URL generated on-demand via the CLI or shared directly in the dedicated customer Slack Connect channel.
 - **Peer-to-Peer Encryption:** Audio, video, and screen sharing are negotiated over encrypted WebRTC channels directly or through the customer-managed Zero-Trust Tunnel (`<dcouplr/> AirLock™`).
 - **Volatile Diagnostic Ring Buffer:** Diagnostic inspections use `<dcouplr/>`'s in-memory telemetry ring buffer (`TelemetryRingBuffer`). Telemetry snapshots never leave volatile RAM.
 
@@ -166,17 +166,10 @@ dcouplr support ticket create \
 # Response confirmation:
 # [OK] Ticket CUST-TKT-884192 created successfully.
 # [SLA] Response guaranteed within 1 Hour (Cluster Large Tier).
-# [BRIDGE] Ephemeral SRE War-Room URL: https://dcouplr.local:8000/support#bridge-884192
+# [BRIDGE] Ephemeral SRE War-Room URL: https://meet.jit.si/dcouplr-bridge-884192 (or private in-VPC bridge)
 ```
 
-### 7.2 In-VPC Customer Operations Web Portal
-Navigate to the local web interface on port 8000:
-```
-http://127.0.0.1:8000/support
-```
-From this portal, engineers can view real-time SLA count-down timers, upload sanitized monitor definitions, submit incident notes, and join active WebRTC war-room bridges with a single click.
-
-### 7.3 Direct Enterprise Escalation Channels
+### 7.2 Direct Enterprise Escalation Channels
 - **Priority Email Desk (Tiers 1–5):** `support@dcouplr.com` (Prefix urgent issues with `[P1 CRITICAL]` in the subject).
 - **Shared Slack Connect / Microsoft Teams (Tiers 3–5):** `#dcouplr-<customer-org>-warroom` (Monitored 24/7/365 by primary on-call SREs).
 - **Direct PagerDuty / Opsgenie Integration (Tiers 4–5):** Bidirectional webhook configured during customer pilot onboarding, instantly paging our engineering on-call rotation.
