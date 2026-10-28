@@ -1543,6 +1543,6 @@ To preserve rigorous regulatory audit trails and architectural transparency, eve
 
 ---
 
-*Need help or want to report an issue? Check the live documentation at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) or open a task ticket using `.github/ISSUE_TEMPLATE/decoupler-task-template.md`.*
+*Need help or want to report an issue? Check the live documentation at [https://dcouplr.com/docs](https://dcouplr.com/docs) or open a task ticket using `.github/ISSUE_TEMPLATE/decoupler-task-template.md`.*
 
 
