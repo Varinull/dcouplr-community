@@ -1,29 +1,44 @@
-# <dcouplr/> Community Core
+# `<dcouplr/>` Community Core
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-brightgreen.svg)](#installation)
-[![Security Guarantee](https://img.shields.io/badge/Egress-0.00%20KB%20(Zero--Egress)-emerald.svg)](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md)
-[![AST Parity](https://img.shields.io/badge/AST%20Transpiler-Deterministic%20Equivalence-blueviolet.svg)](#why-dcouplr)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](#installation)
+[![Local-first](https://img.shields.io/badge/Deploy-Local--first%20%7C%20In--VPC-emerald.svg)](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md)
+[![UIT-IR](https://img.shields.io/badge/UIT--IR-source%20%E2%86%92%20graph%20%E2%86%92%20target-blueviolet.svg)](#what-is-dcouplr)
 
-> **Zero-Egress In-VPC Observability & Infrastructure Transpiler**  
-> Liberate your telemetry dashboards, alert rules, and infrastructure configurations from proprietary vendor lock-in with mathematical determinism and zero data egress.
-
----
-
-## ⚡ What is `<dcouplr/>`?
-
-**`<dcouplr/>`** is a high-performance, local-first transpiler designed for DevOps, Platform Engineers, and SREs. It translates vendor-proprietary monitoring configurations (Datadog monitors, CloudWatch alarms) and Infrastructure-as-Code (Terraform, CloudFormation) into open cloud-native standards (Prometheus, Grafana 11, OpenTelemetry, OpenTofu) — directly within your local workstation or isolated private VPC.
-
-### 🛡️ Core Guarantees:
-- **Zero-Egress ($Egress_{WAN} \equiv 0.00\text{ KB}$):** Operates 100% locally in-memory. No queries or configs ever leave your network.
-- **In-Memory Token Sanitization:** Scans and masks RFC 1918 private IPs, credentials, and internal hostnames in volatile RAM before parsing.
-- **Deterministic AST Engine:** No LLM hallucinations or dropped thresholds. Translates queries using formal Abstract Syntax Trees with proven mathematical equivalence.
-- **Zero Silent Drops:** Unmapped vendor functions are explicitly surfaced in fallback comment blocks (`# [UNMAPPED-RESOURCE-FALLBACK]`).
-- **Cross-Platform:** Native support for Linux (x86_64, ARM64), macOS (Apple Silicon M1-M4, Intel), and Windows.
+> **Local-first AST transpiler built on UIT-IR**  
+> Parse vendor monitors in RAM, score fidelity, and emit open targets (PromQL, Grafana, OpenTofu) on your host—not through a hosted translation service.
 
 ---
 
-## 📦 Installation
+## What is `<dcouplr/>`?
+
+**`<dcouplr/>`** is a local-first Python engine for DevOps, Platform Engineers, and SREs. It is built around a Unified Intermediate Representation (**UIT-IR** / `UITGraph`):
+
+```text
+vendor monitor JSON / HCL
+        ↓ parse + scrub (RAM)
+UITGraph  · monitors · resources · policies · edges
+        ↓ emit + fidelity score
+PromQL / Grafana YAML / OpenTofu
+```
+
+Community Core (this repository) is **Apache 2.0**. Install via `install.sh` / `install.ps1`, `pip`, or Docker. Optional distroless containers run as non-root UID `65532`.
+
+### What it does
+
+- **UIT-IR spine:** Source definitions parse into a ground-up graph, then emit to open targets.
+- **In-memory scrubbing:** RFC 1918 private IPs, credentials, and internal hostnames can be masked in volatile RAM before parse/emit.
+- **Deterministic AST path:** Query translation uses formal trees and fidelity scoring—not an LLM rewrite step.
+- **Explicit unmapped fallbacks:** Unmapped vendor functions surface in comment blocks (`# [UNMAPPED-RESOURCE-FALLBACK]`), not silent drops.
+- **Local-first / air-gapped options:** Designed to run on your workstation or inside a private VPC. Network egress is controlled by your SG/NACL/proxy posture (and optional in-process / eBPF helpers)—not by shipping configs to a hosted translator.
+- **Cross-platform:** Linux (x86_64, ARM64), macOS (Apple Silicon & Intel), Windows.
+
+Audited Community Core benchmarks (see [Resource Utilization & Performance Proof](docs/RESOURCE_UTILIZATION_AND_PERFORMANCE_PROOF.md)): **63.2 rules/sec**, **15.8 ms/rule**, **~77 MB RSS**.
+
+---
+
+## Installation
 
 ### Linux & macOS One-Line Installer
 ```bash
@@ -31,35 +46,40 @@ curl -fsSL https://dcouplr.com/install.sh | sh && dcouplr doctor
 ```
 *Or directly via GitHub:*
 ```bash
-curl -fsSL https://raw.githubusercontent.com/varinull/dcouplr-community/main/install.sh | sh && dcouplr doctor
+curl -fsSL https://raw.githubusercontent.com/Varinull/dcouplr-community/main/install.sh | sh && dcouplr doctor
 ```
 
 ### Windows PowerShell Installer
-Run in PowerShell:
 ```powershell
 irm https://dcouplr.com/install.ps1 | iex
 ```
 *Or directly via GitHub:*
 ```powershell
-irm https://raw.githubusercontent.com/varinull/dcouplr-community/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Varinull/dcouplr-community/main/install.ps1 | iex
 ```
 
-### Direct Installer Script Downloads
-Download standalone installer scripts:
-- 🐧 🍏 **Linux & macOS:** [install.sh](install.sh) (`https://dcouplr.com/install.sh`)
-- 🪟 **Windows PowerShell:** [install.ps1](install.ps1) (`https://dcouplr.com/install.ps1`)
+### pip / clone
+```bash
+git clone https://github.com/Varinull/dcouplr-community.git
+cd dcouplr-community
+pip install -e .
+dcouplr doctor
+```
+
+### Direct installer scripts
+- **Linux & macOS:** [install.sh](install.sh) (`https://dcouplr.com/install.sh`)
+- **Windows PowerShell:** [install.ps1](install.ps1) (`https://dcouplr.com/install.ps1`)
 
 ---
 
-## 🚀 Quickstart in 60 Seconds
+## Quickstart in 60 Seconds
 
-### 1. Run Preflight Health Check
-Verify your local environment meets requirements:
+### 1. Preflight
 ```bash
 dcouplr doctor
 ```
 
-### 2. Transpile an Alert Rule
+### 2. Transpile an alert rule
 Create a Datadog monitor definition (`monitor.json`):
 ```json
 {
@@ -70,12 +90,11 @@ Create a Datadog monitor definition (`monitor.json`):
 }
 ```
 
-Transpile directly into Prometheus Alerting Rule YAML:
 ```bash
 dcouplr translate -i monitor.json -t prometheus -o alert_rules.yaml
 ```
 
-Output (`alert_rules.yaml`):
+Example output (`alert_rules.yaml`):
 ```yaml
 # Generated by <dcouplr/> Community Core (Apache 2.0)
 groups:
@@ -92,65 +111,66 @@ groups:
           description: "P95 database latency exceeded 250ms"
 ```
 
-### 3. Parse and Validate Query AST
-Inspect syntax trees and validate metrics locally:
+### 3. Parse and inspect the AST
 ```bash
 dcouplr parse -q "avg(last_5m):avg:system.cpu.user{region:us-east-1} > 80"
 ```
 
 ---
 
-## 📚 Community Documentation & Field Guides
+## Community Documentation & Field Guides
 
-All official guides published on [https://dcouplr.com/docs](https://dcouplr.com/docs) are accessible directly in this repository:
+Guides that mirror [https://dcouplr.com/docs](https://dcouplr.com/docs):
 
-| Guide / Specification | Category | Focus & Content |
+| Guide / Specification | Category | Focus |
 | :--- | :--- | :--- |
-| 🚀 [**Getting Started & Installation Guide**](docs/GETTING_STARTED.md) | Quickstart | 60-second quickstarts, environment prerequisites, and `dcouplr doctor` verification. |
-| 🧭 [**CLI User Guide & Options Reference**](docs/CLI_USER_GUIDE.md) | CLI Reference | Complete flag reference for `translate`, `parse`, `doctor`, and `version`. |
-| 📖 [**Engineer & Operator User Manual**](docs/ENGINEER_USER_MANUAL.md) | Hands-on Manual | 3-minute quickstarts, Datadog-to-Prometheus cookbook, Terraform-to-OpenTofu, FAQ & everyday cheat sheet. |
-| 🛠️ [**Turnkey Migration Recipes (1–8)**](docs/TURNKEY_MIGRATION_RECIPES.md) | Recipes | Production recipes for Datadog, New Relic, AWS CloudWatch, Azure Monitor, OpenTofu, Replication, and Raft. |
-| ⚡ [**SRE Lift & Shift & Hyperscaler Handover**](docs/RUNBOOK_LIFT_AND_SHIFT_HYPERSCALER_HANDOVER.md) | Operations Runbook | End-to-end VPC migration runbook: AWS MGN, GCP M4CE, Azure Migrate, and `cloaudit` FinOps handover. |
-| 📺 [**24x7 NOC Wallboard Deployment Runbook**](docs/WALLBOARD_OPTIONS_BUILD_AND_DEPLOYMENT_RUNBOOK.md) | Wallboard & Ops | Setup guide for `AirLock™` (Zero-Trust Tunnel) and `PulseCast™` (Edge CDN Mirror) with Raspberry Pi / Intel N100 Kiosk scripts. |
-| 📊 [**Resource Utilization & Performance Proof**](docs/RESOURCE_UTILIZATION_AND_PERFORMANCE_PROOF.md) | Performance Proof | Empirical benchmark audit: Sub-100MB RAM, < 0.1% CPU, 63.2 rules/sec, zero memory leaks, and 0 WAN egress. |
-| 🔌 [**API Reference & 3-Tier Security Model**](docs/API_REFERENCE_AND_TIERS.md) | API Reference | Architecture specs for Tier 1 (Public Free), Tier 2 (Customer Authenticated), and Tier 3 (Admin Internal). |
-| 🛡️ [**Zero-Egress Security Architecture**](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md) | Security | Mathematical proof of zero data exfiltration ($Egress_{WAN} \equiv 0.00\text{ KB}$) and HMAC-SHA256 anonymization. |
-| 📋 [**Technical Readiness & Quality Gates**](docs/TECHNICAL_READINESS_AND_QUALITY_GATES.md) | Quality Assurance | The 9 Enterprise Quality Gates, readiness scorecard (9.5/10), and automated test suites. |
-| 🤝 [**Support Tiers, SLAs & Operational KPIs**](docs/SUPPORT_TIERS_SLAS_AND_KPIS.md) | Support & SLAs | Detailed support levels by tier, guaranteed P0–P4 response windows, MTTA/MTTI/MTTM metrics, and Jitsi video war-room bridge protocols. |
+| [**Getting Started & Installation Guide**](docs/GETTING_STARTED.md) | Quickstart | Prerequisites, installers, `dcouplr doctor` |
+| [**CLI User Guide & Options Reference**](docs/CLI_USER_GUIDE.md) | CLI | `translate`, `parse`, `doctor`, `version` |
+| [**Engineer & Operator User Manual**](docs/ENGINEER_USER_MANUAL.md) | Hands-on | Cookbook scenarios and FAQ |
+| [**Turnkey Migration Recipes (1–8)**](docs/TURNKEY_MIGRATION_RECIPES.md) | Recipes | Datadog, New Relic, CloudWatch, Azure Monitor, OpenTofu, replication |
+| [**SRE Lift & Shift & Hyperscaler Handover**](docs/RUNBOOK_LIFT_AND_SHIFT_HYPERSCALER_HANDOVER.md) | Operations | AWS MGN, GCP M4CE, Azure Migrate handover patterns |
+| [**24x7 NOC Wallboard Deployment Runbook**](docs/WALLBOARD_OPTIONS_BUILD_AND_DEPLOYMENT_RUNBOOK.md) | Wallboard | AirLock™ / PulseCast™ kiosk options |
+| [**Resource Utilization & Performance Proof**](docs/RESOURCE_UTILIZATION_AND_PERFORMANCE_PROOF.md) | Benchmarks | RSS, rules/sec, local-first run profile |
+| [**API Reference & 3-Tier Security Model**](docs/API_REFERENCE_AND_TIERS.md) | API | Public / authenticated / admin surfaces |
+| [**Zero-Egress Security Architecture**](docs/ZERO_EGRESS_SECURITY_ARCHITECTURE.md) | Security | Local-first controls, scrubbing, perimeter posture |
+| [**Technical Readiness & Quality Gates**](docs/TECHNICAL_READINESS_AND_QUALITY_GATES.md) | QA | Quality gates and test posture |
+| [**Support Tiers, SLAs & Operational KPIs**](docs/SUPPORT_TIERS_SLAS_AND_KPIS.md) | Support | Tier matrix and response windows |
 
 ---
 
-## 🏢 Feature Matrix: Community Core vs. Enterprise Edition
+## Feature Matrix: Community Core vs. Enterprise Edition
 
-| Feature / Capability | Community Core (Free Tier) | Enterprise Edition |
+| Feature / Capability | Community Core (Free) | Enterprise Edition |
 | :--- | :---: | :---: |
-| **License Model** | **Apache 2.0 (Perpetual $0)** | Commercial In-VPC |
-| **Monitored Agent Capacity** | **1 Local Agent / CLI (`dcouplr`)** | 25 – 1,000+ Distributed Nodes |
-| **In-Memory Zero-Egress Sanitizer** | ✅ **Included (100% In-VPC)** | ✅ Included (Enterprise Policy Mesh) |
-| **Unlimited Local AST Transpilations** | ✅ **Included (Full Engine)** | ✅ Included (High-Throughput Daemon) |
-| **Automated `dcouplr doctor` & `lint`** | ✅ **Included** | ✅ Included (CI/CD Enforcement Gates) |
-| **Zero-Downtime State Relocation Planner** | ✅ **Included (Local State)** | ✅ Included (Cluster Replay & Mesh) |
-| **Multi-VPC Topology & Anycast Routing** | — | ✅ Included |
-| **Distributed HashiCorp Raft Consensus** | — | ✅ Included |
-| **Interactive In-App Web Studio & Swagger** | — | ✅ Included |
-| **24/7 Dedicated SRE Bridge SLA** | — | ✅ Included |
+| **License** | **Apache 2.0 ($0)** | Commercial In-VPC |
+| **Capacity** | **1 local CLI / agent** | 25 – 1,000+ nodes |
+| **UIT-IR AST transpile path** | ✅ Included | ✅ High-throughput daemon |
+| **In-memory sanitizer** | ✅ Included | ✅ Enterprise policy mesh |
+| **`dcouplr doctor` & lint** | ✅ Included | ✅ CI/CD enforcement gates |
+| **Staged state relocation planner** | ✅ Local state | ✅ Cluster replay & mesh |
+| **Multi-VPC topology** | — | ✅ Included |
+| **Distributed Raft consensus** | — | ✅ Included |
+| **In-app web studio** | — | ✅ Included |
+| **Dedicated SRE bridge SLA** | — | ✅ Included |
 
-For enterprise cluster deployments, custom vendor grammars, or multi-VPC mesh licenses, visit [https://dcouplr.com](https://dcouplr.com) or review [Enterprise Documentation](https://dcouplr.com/docs).
+Commercial licensing is via **invoice, PO, or offline entitlement activation** (not Marketplace listings). For cluster deployments or custom grammars, see [https://dcouplr.com](https://dcouplr.com) and [docs](https://dcouplr.com/docs).
 
----
-
-## 🤝 Community & Support
-
-- **Bug Reports & Issues:** Please submit bug reports or feature suggestions via [GitHub Issues](https://github.com/varinull/dcouplr-community/issues).
-- **Official Website:** [https://dcouplr.com](https://dcouplr.com)
-- **Documentation:** [https://dcouplr.com/docs](https://dcouplr.com/docs)
-- **Primary Source Code:** [https://github.com/Varinull/dcouplr](https://github.com/Varinull/dcouplr)
+Illustrative license-cost gaps vs estimated SaaS ranges are methodology-based estimates—not guaranteed customer TCO outcomes.
 
 ---
 
-## 📄 License
+## Community & Support
+
+- **Issues:** [GitHub Issues](https://github.com/Varinull/dcouplr-community/issues)
+- **Website:** [https://dcouplr.com](https://dcouplr.com)
+- **Docs:** [https://dcouplr.com/docs](https://dcouplr.com/docs)
+- **This repository:** [https://github.com/Varinull/dcouplr-community](https://github.com/Varinull/dcouplr-community) (Apache 2.0 Community Core)
+
+---
+
+## License
 
 This repository and all community distributions are licensed under the **Apache License, Version 2.0**.  
 See the [LICENSE](LICENSE) file for complete terms and copyright notices.
 
-Copyright &copy; 2026 Varinull Corporation. All rights reserved.
+Copyright © 2026 Varinull Corporation. All rights reserved.
