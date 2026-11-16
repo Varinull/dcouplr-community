@@ -134,7 +134,7 @@ Planning (Discovery & Synthesis)  ──>  Implementation (Landing Zone IaC)  �
    `<dcouplr/>` partitions the target CIDR supernet (e.g. `10.200.0.0/16`) into isolated, non-overlapping `/24` subnets (e.g., `10.200.10.0/24` for App tier, `10.200.20.0/24` for Database tier). This eliminates the #1 cause of cloud migration outages: RFC 1918 CIDR collision.
 
 3. **AST Alert & Monitoring Transpilation:**
-   Source observability monitors (Datadog monitors, New Relic NRQL, AWS CloudWatch alarms) are transpiled by `<dcouplr/>` into vendor-neutral `PrometheusRule` YAML with mathematically verified threshold parity ($\Phi(q) \equiv \Psi(\text{PromQL})$).
+   Source observability monitors (Datadog monitors, New Relic NRQL, AWS CloudWatch alarms) are transpiled by `<dcouplr/>` into vendor-neutral `PrometheusRule` YAML with a local fidelity score and explicit unmapped fallbacks for operator review.
 
 4. **Kernel-Level eBPF Static IP Rewriting:**
    For legacy enterprise applications with hardcoded IP addresses (e.g. `172.16.1.15:5432`), `<dcouplr/>` generates an in-kernel eBPF DNAT rewrite map that translates legacy IPs to internal DNS aliases (`database-sub.mesh.internal`) at the Linux socket layer with zero application code changes.
